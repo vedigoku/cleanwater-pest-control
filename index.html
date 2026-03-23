@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleanwater - Controlo de Pragas Ecológico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #00a86b 0%, #00d97e 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #00a86b;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #00a86b 0%, #00d97e 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #00a86b;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #ff9800;
+            color: white;
+            border-color: #ff9800;
+        }
+        
+        .btn-secondary:hover {
+            background: #fb8c00;
+            border-color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .section-alt {
+            background: #f5f5f5;
+        }
+        
+        .section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #00a86b;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            color: #00a86b;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #00a86b;
+            margin-top: 5px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            color: #00a86b;
+            margin: 20px 0 15px 0;
+            font-size: 20px;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-left: 5px solid #00a86b;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #00a86b;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #00a86b 0%, #00d97e 100%);
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .contact-section h2 {
+            color: white;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: #00a86b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #008c5b;
+        }
+        
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            color: #00a86b;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #00a86b;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section h2 {
+                font-size: 28px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                🌿 Cleanwater
+            </div>
+            <ul>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#testemunhas">Testemunhas</a></li>
+                <li><a href="#contacto" class="cta-button">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🌍 Controlo de Pragas Ecológico</h1>
+            <p>Soluções sustentáveis e eficazes para proteger sua casa e negócio</p>
+            <a href="#servicos" class="btn">Explorar Serviços</a>
+            <a href="#contacto" class="btn btn-secondary">Marcar Consulta</a>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="servicos" class="section">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🦟</div>
+                    <h3>Controlo de Insetos</h3>
+                    <p>Eliminação eficaz de mosquitos, baratas, térmitas e outras pragas com métodos eco-friendly.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🐭</div>
+                    <h3>Controlo de Roedores</h3>
+                    <p>Soluções seguras para ratos e ratazanas sem prejudicar o meio ambiente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🕷️</div>
+                    <h3>Aranhas e Ácaros</h3>
+                    <p>Tratamento especializado para aranhas, ácaros e outras pragas menores.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦅</div>
+                    <h3>Controlo de Aves</h3>
+                    <p>Métodos humanos para controlar aves indesejadas em estruturas comerciais.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Limpeza Profunda</h3>
+                    <p>Limpeza e desinfecção após tratamento para garantir ambientes seguros.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Tratamento Preventivo</h3>
+                    <p>Programas mensais de prevenção para manter seu espaço livre de pragas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="sobre" class="section section-alt">
+        <div class="container">
+            <h2>Sobre a Cleanwater</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Quem Somos</h3>
+                    <p>A Cleanwater é uma empresa líder em controlo de pragas com foco em soluções ecológicas e sustentáveis. Com mais de 15 anos de experiência, oferecemos tratamentos seguros que protegem sua família e o meio ambiente.</p>
+                    
+                    <h3>Nossa Missão</h3>
+                    <p>Proporcionar ambientes limpos e seguros através de métodos inovadores, respeitando a natureza e priorizando a saúde de nossos clientes.</p>
+                    
+                    <h3>Por Que Somos Diferentes</h3>
+                    <ul style="list-style-position: inside; line-height: 1.8;">
+                        <li>✅ Produtos 100% ecológicos e biodegradáveis</li>
+                        <li>✅ Equipa certificada e treinada</li>
+                        <li>✅ Garantia de resultados em 7-14 dias</li>
+                        <li>✅ Atendimento 24/7 para emergências</li>
+                        <li>✅ Preços competitivos e transparentes</li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="background: #00a86b; color: white; padding: 40px; border-radius: 10px; text-align: center;">
+                        <h3 style="margin-bottom: 20px;">Nossos Números</h3>
+                        <div style="font-size: 36px; font-weight: bold; margin: 20px 0;">5000+</div>
+                        <p>Clientes Satisfeitos</p>
+                        <hr style="opacity: 0.5; margin: 20px 0;">
+                        <div style="font-size: 36px; font-weight: bold; margin: 20px 0;">99.8%</div>
+                        <p>Taxa de Sucesso</p>
+                        <hr style="opacity: 0.5; margin: 20px 0;">
+                        <div style="font-size: 36px; font-weight: bold; margin: 20px 0;">24/7</div>
+                        <p>Disponível para Você</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testemunhas" class="section">
+        <div class="container">
+            <h2>O Que Nossos Clientes Dizem</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"Excelente serviço! Livrei-me de térmitas em apenas 2 semanas. Recomendo muito!"</p>
+                    <div class="testimonial-author">⭐⭐⭐⭐⭐ Maria Silva, Porto</div>
+                </div>
+                <div class="testimonial">
+                    <p>"A equipa é profissional, pontual e respeitosa. Produto eficaz e não prejudicial ao ambiente."</p>
+                    <div class="testimonial-author">⭐⭐⭐⭐⭐ João Costa, Lisboa</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Contratei o tratamento preventivo e, desde então, zero problemas. Muito satisfeito!"</p>
+                    <div class="testimonial-author">⭐⭐⭐⭐⭐ Empresa TechSoft, Braga</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2>Entre em Contacto Conosco</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-icon">📞</div>
+                    <h3>Telefone</h3>
+                    <p>+351 21 234 5678</p>
+                    <p>+351 91 234 5678</p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>info@cleanwater.pt</p>
+                    <p>contacto@cleanwater.pt</p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-icon">📍</div>
+                    <h3>Endereço</h3>
+                    <p>Rua das Flores, nº 123</p>
+                    <p>1200-123 Lisboa, Portugal</p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 style="text-align: center; color: #00a86b; margin-bottom: 30px;">Peça um Orçamento Gratuito</h3>
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telemovel">Telemóvel</label>
+                        <input type="tel" id="telemovel" name="telemovel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="servico">Serviço Desejado</label>
+                        <select id="servico" name="servico" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option>Controlo de Insetos</option>
+                            <option>Controlo de Roedores</option>
+                            <option>Aranhas e Ácaros</option>
+                            <option>Controlo de Aves</option>
+                            <option>Tratamento Preventivo</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Solicitação</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌿 Cleanwater</h3>
+                    <p>Solução completa em controlo de pragas ecológico.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#servicos">Controlo de Insetos</a></li>
+                        <li><a href="#servicos">Roedores</a></li>
+                        <li><a href="#servicos">Preventivo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Informações</h3>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cleanwater. Todos os direitos reservados. | Desenvolvido com ❤️</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const servico = document.getElementById('servico').value;
+            alert(`Obrigado, ${nome}! Receberemos sua solicitação. Entraremos em contacto em breve no email ${email}.`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
